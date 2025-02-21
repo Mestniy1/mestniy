@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Планы благоустройства города Октябрьский</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f8f9fa;
+            color: #333; /* Темный текст для лучшей читаемости */
+        }
+        .navbar {
+            background-color: #495057; /* Темно-серый, более стильный */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Легкая тень */
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+            transition: color 0.3s ease; /* Плавный эффект при наведении */
+        }
+        .navbar-brand:hover, .nav-link:hover {
+            color: #adb5bd !important; /* Светлый серый при наведении */
+        }
+        .jumbotron {
+            background-image: url('https://i.okcdn.ru/i?r=BUHoKFKCs3-57yPBZdu-SuAVRCQijYLAPpTal4tWuBFEuTXiJy_D3Wnj6q9bMs3Hqq1WPvmE4roNRgCaZFG2XHqW&fn=w_790'); /* Замените! */
+            background-size: cover;
+            color: rgb(255, 255, 255);
+            padding: 120px 0; /* Увеличил отступ */
+            text-align: center;
+            position: relative;
+            overflow: hidden; /* Чтобы волны не выходили за границы */
+        }
+        .jumbotron::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0 C268.3,56.3 748.5,71.8 1200,27.3 L1200,120 L0,120 Z' fill='rgba(248,249,250,1)'%3E%3C/path%3E%3C/svg%3E"); /* Волна внизу */
+            background-size: 100% 100px;
+            z-index: 1;
+        }
+
+        .jumbotron h1 {
+            font-size: 3.5rem; /* Увеличил размер заголовка */
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Тень для текста */
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px; /* Больше отступ */
+            font-size: 2.5rem;
+            font-weight: 500;
+            color: #495057;
+        }
+        .plan-card {
+            border: none; /* Убрал границу */
+            border-radius: 10px;
+            margin-bottom: 30px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Более выраженная тень */
+            transition: transform 0.3s ease; /* Эффект масштабирования при наведении */
+        }
+        .plan-card:hover {
+            transform: translateY(-5px); /* Поднимается при наведении */
+        }
+        .plan-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease; /* Увеличение картинки при наведении */
+        }
+        .plan-card:hover img {
+            transform: scale(1.05);
+        }
+        .plan-card .card-body {
+            padding: 25px;
+        }
+        .plan-card .card-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+            color: #495057;
+        }
+        .plan-card .card-text {
+            color: #6c757d; /* Более мягкий цвет текста */
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #0069d9;
+            border-color: #0062cc;
+        }
+        #news .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        #news .card-body {
+            padding: 20px;
+        }
+        #news .card-title {
+            font-size: 1.3rem;
+            color: #495057;
+            margin-bottom: 10px;
+        }
+        #news .card-text {
+            color: #6c757d;
+        }
+        footer {
+            background-color: #495057;
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 80px; /* Большой отступ */
+        }
+        footer p {
+            font-size: 0.9rem;
+        }
+        /*Дополнительные стили для адаптивности*/
+        @media (max-width: 768px) {
+            .jumbotron {
+                padding: 80px 0;
+            }
+            .jumbotron h1 {
+                font-size: 2.5rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Город Октябрьский</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#plans">Планы благоустройства</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#news">Новости</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Контакты</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Jumbotron -->
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Планы благоустройства города Октябрьский</h1>
+            <p>Сделайте свой город лучше вместе с нами!</p>
+            <a href="#plans" class="btn btn-primary btn-lg">Посмотреть планы</a>
+        </div>
+    </div>
+
+    <!-- Благоустройство Section -->
+    <section id="plans" class="py-5">
+        <div class="container">
+            <h2 class="section-title">Планы благоустройства</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="plan-card">
+                        <img src="https://i.okcdn.ru/i?r=BUHoKFKCs3-57yPBZdu-SuAV-qhKXaIFLeWOB4Pn6fSq2ZG6wIrQ3B1Yoa4nBEWeEuxWPvmE4roNRgCaZFG2XHqW&fn=w_790" alt="План благоустройства парка"> <!-- Замените! -->
+                        <div class="card-body">
+                            <h5 class="card-title">Реконструкция городского парка</h5>
+                            <p class="card-text">Проект предусматривает обновление пешеходных дорожек, установку новых скамеек и освещения, а также создание детской игровой зоны.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="plan-card">
+                        <img src="https://i.okcdn.ru/i?r=BUFdgnrloWV447DxrbcgGLJlHg_yepiytgvw4g5ARxP6av_etbte3Xq1Xr9WjNPfCOg7aJTgAZ4ddk5JkKTCdv0c" alt="План благоустройства улицы"> <!-- Замените! -->
+                        <div class="card-body">
+                            <h5 class="card-title">Благоустройство улицы Ленина</h5>
+                            <p class="card-text">Планируется расширение тротуаров, высадка деревьев, создание велодорожек и установка современных остановочных павильонов.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="plan-card">
+                        <img src="https://i.okcdn.ru/i?r=BUHoKFKCs3-57yPBZdu-SuAVTsEwRSqZ3Gjuw6Jn00Gmn7m3DJe4CxQEO6JJpE0ef19WPvmE4roNRgCaZFG2XHqW&fn=w_790" alt="План благоустройства двора"> <!-- Замените! -->
+                        <div class="card-body">
+                            <h5 class="card-title">Комплексное благоустройство дворов</h5>
+                            <p class="card-text">Программа обновления дворовых территорий, включающая ремонт дорог, установку детских и спортивных площадок, озеленение.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="plan-card">
+                        <img src="https://i.okcdn.ru/i?r=BUFdgnrloWV447DxrbcgGLJlAtFhNWzzFyct70ZakDTCvVi-D-OzDd5KWxpDM4kPrPk7aJTgAZ4ddk5JkKTCdv0c" alt="Благоустройство водоёма"> <!-- Замените! -->
+                        <div class="card-body">
+                            <h5 class="card-title">Благоустройство набережной реки</h5>
+                            <p class="card-text">Проект обновления зоны отдыха с созданием мест для прогулок и установкой арт-объектов</p>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="col-md-4">
+                    <div class="plan-card">
+                        <img src="https://www.ch-smi.by/wp-content/uploads/2023/03/3_clear_resize1.jpg" alt="Благоустройство площади"> <!-- Замените! -->
+                        <div class="card-body">
+                            <h5 class="card-title">Благоустройство площади города</h5><p class="card-text">Обновление главной площади города с установкой фонтана, скамеек и новых элементов освещения. А так же стены почёта значимых людей для нашего района а так же героев ВОВ.</p>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="col-md-4">
+                    <div class="plan-card">
+                        <img src="https://i.okcdn.ru/i?r=BUHoKFKCs3-57yPBZdu-SuAVK-hIDqC27W5LLiblUqgmVW_KizNPRdLytT7k8J4ug2FWPvmE4roNRgCaZFG2XHqW&fn=w_790" alt="Велодорожки"> <!-- Замените! -->
+                        <div class="card-body">
+                            <h5 class="card-title">Установка новых велодорожек</h5>
+                            <p class="card-text">Проект новых велосипедных дорожек для удобства перемещения жителей</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+   <section id="news" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title">Новости благоустройства</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Завершение первого этапа реконструкции парка</h5>
+                            <p class="card-text">Сообщаем о завершении первого этапа реконструкции городского парка. Открыта новая детская площадка и обновлены пешеходные дорожки. Поставлена дорога памяти а так же символ нашего района "Рудая белочка".</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Начало работ по благоустройству улицы Советской</h5>
+                            <p class="card-text">Стартовали работы по комплексному благоустройству улицы Советской. Просим жителей и гостей города учитывать возможные затруднения движения.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <h2 class="section-title">Связаться с нами</h2>
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <p>Если у вас есть вопросы или предложения по планам благоустройства города Октябрьский, пожалуйста, свяжитесь с нами, ваше мнение для нас очень важно.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Администрация города Октябрьский.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
